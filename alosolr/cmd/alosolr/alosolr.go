@@ -61,7 +61,7 @@ func main() {
 	flag.StringVar(&solrhost, "s", "localhost", "Solr Hostname")
 	flag.StringVar(&solrport, "p", "8983", "Solr Hostname")
 	flag.StringVar(&solrcore, "c", "alb-log", "Solr Core or Collection Name")
-	flag.IntVar(&updatenum, "u", 1000, "")
+	flag.IntVar(&updatenum, "u", 5000, "")
 	flag.BoolVar(&showVersion, "v", false, "Show Version")
 	flag.Parse()
 
@@ -94,11 +94,11 @@ func main() {
 				doc := convertSolrDoc(e)
 				docs = append(docs, doc)
 				if len(docs) > updatenum {
-					res, err := sendDocsToSolr(si, docs)
+					_, err := sendDocsToSolr(si, docs)
 					if err != nil {
 						log.Printf("[error]Solr Update Error %#v\n%#v", err, docs)
 					} else {
-						log.Printf("[info]Solr Update Success %#v\n", res)
+						log.Printf("[info]Solr Update Success (%d docs)\n", len(docs))
 					}
 					docs = make([]interface{}, 0)
 				}
@@ -108,4 +108,10 @@ func main() {
 		}
 	}
 	sendDocsToSolr(si, docs)
+	_, err = sendDocsToSolr(si, docs)
+	if err != nil {
+		log.Printf("[error]Solr Update Error %#v\n%#v", err, docs)
+	} else {
+		log.Printf("[info]Solr Update Success (%d docs)\n", len(docs))
+	}
 }
