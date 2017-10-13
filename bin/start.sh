@@ -4,5 +4,5 @@ cd ${BASEDIR}
 source ../conf/env.sh
 echo $AWSENVFILE
 docker run --name ${CONTAINERNAME} -d -p ${SOLRPORT}:${SOLRPORT} yomon8/alb-banana
-#./loaddata.sh
+./loaddata.sh
 
