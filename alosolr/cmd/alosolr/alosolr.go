@@ -93,7 +93,7 @@ func main() {
 			} else {
 				doc := convertSolrDoc(e)
 				docs = append(docs, doc)
-				if len(docs) > updatenum {
+				if len(docs) == updatenum {
 					_, err := sendDocsToSolr(si, docs)
 					if err != nil {
 						log.Printf("[error]Solr Update Error %#v\n%#v", err, docs)
