@@ -11,5 +11,5 @@ docker run -it \
  -e S3_PREFIX=${S3_PREFIX} \
  -e DURATION_MINUTES=${DURATION_MINUTES} \
  -e UPDATE_COUNT=${UPDATE_COUNT} \
- --link ${CONTAINERNAME}:solr yomon8/alb-banana-cli
+ --link ${CONTAINERNAME}:solr yomon8/alb-banana-cli:${CONTAINERNAME_CLI_VERSION}
 
