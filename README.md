@@ -35,7 +35,7 @@ S3_PREFIX=prefix/to/alb/accesslog
 ### 3. Start
 
 ```
-./alb-log-analyzer/bin/start.sh
+./bin/start.sh
 ```
 
 ### 4. Access
@@ -46,6 +46,6 @@ http://127.0.0.1:8983/banana/#/dashboard/solr/ALB
 ### 5. Stop
 
 ```
-./alb-log-analyzer/bin/stop.sh
+./bin/stop.sh
 ```
 
