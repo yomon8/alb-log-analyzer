@@ -41,7 +41,7 @@ S3_PREFIX=prefix/to/alb/accesslog
 ### 4. Access
 Access the url below with your browser
 
-http://127.0.0.1:8983/banana/#/dashboard/solr/ALB
+http://127.0.0.1:8983/banana/#/dashboard/solr/ALB?server=%2Fsolr%2F
 
 ### 5. Stop
 
