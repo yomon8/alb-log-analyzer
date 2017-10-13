@@ -1,0 +1,7 @@
+AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY=YOUR_SECRET_ACCESS_KEY
+AWS_REGION=aws-region
+S3_BUCKET=your-bucket-name
+S3_PREFIX=prefix/to/alb/accesslog
+
+

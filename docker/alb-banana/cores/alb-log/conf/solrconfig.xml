@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  <luceneMatchVersion>6.5.1</luceneMatchVersion>
+  <dataDir>${solr.data.dir:}</dataDir>
+  <schemaFactory class="ClassicIndexSchemaFactory"/>
+
+  <requestHandler name="/select" class="solr.SearchHandler">
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <int name="rows">10</int>
+      <str name="df">text</str>
+    </lst>
+  </requestHandler>
+
+  <query>
+    <documentCache
+      class="solr.LRUCache"
+      size="128"
+      initialSize="128" />
+    <queryResultCache
+      class="solr.LRUCache"
+      size="128"
+      initialSize="128"
+      autowarmCount="4500" />
+    <filterCache
+      class="solr.FastLRUCache"
+      size="128"
+      initialSize="128"
+      autowarmCOunt="128" />
+  </query>
+    
+  <requestHandler name="/update" class="solr.UpdateRequestHandler">
+    <lst name="defaults">
+      <str name="update.chain">uuid</str>
+    </lst>
+  </requestHandler>
+
+  <updateHandler class="solr.DirectUpdateHandler2">
+    <autoCommit>
+      <maxDocs>10000</maxDocs>
+      <maxTime>3600</maxTime>
+    </autoCommit>
+  </updateHandler>
+
+  <updateRequestProcessorChain name="uuid">
+    <processor class="solr.UUIDUpdateProcessorFactory">
+      <str name="fieldName">id</str>
+    </processor>
+    <processor class="solr.RunUpdateProcessorFactory" />
+  </updateRequestProcessorChain>
+    <requestHandler name="/get" class="solr.RealTimeGetHandler">
+      <lst name="defaults">
+        <str name="omitHeader">true</str>
+     </lst>
+  </requestHandler>
+
+  <indexConfig>
+  <mergePolicyFactory class="org.apache.solr.index.TieredMergePolicyFactory">
+    <int name="maxMergeAtOnce">5</int>
+    <int name="segmentsPerTier">20</int>
+  </mergePolicyFactory>
+
+  </indexConfig>
+
+</config>

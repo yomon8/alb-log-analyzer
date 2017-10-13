@@ -1,3 +1,9 @@
+*
+!*/
+!*.*
+.DS_Store
+conf/awsenv.sh
+
 # Binaries for programs and plugins
 *.exe
 *.dll

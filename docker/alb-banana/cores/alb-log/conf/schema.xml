@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="alb-log-schema" version="1.0">
+   <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+   <fieldType name="double" class="solr.TrieDoubleField" />
+   <fieldType name="boolean" class="solr.BoolField" />
+   <fieldType name="uuid" class="solr.UUIDField" indexed="true" />
+   <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+   <fieldType name="tdate" class="solr.TrieDateField" />
+   <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true" />
+
+   <field name="id"                        type="string"        indexed="true"  stored="true"  multiValued="false" required="true"/>
+   <field name="_version_"                 type="long"          indexed="true"  stored="true"  multiValued="false" />
+
+   <field name="received_bytes"            type="long"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="sent_bytes"                type="long"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="type"                      type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="trace_id"                  type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="target"                    type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_port"               type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_processing_time"    type="double"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_status_code"        type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_group_arn"          type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_group_name"         type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_processing_time"   type="double"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="domain"                    type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_uri"               type="text_general"  indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_method"            type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_protocol"          type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="response_processing_time"  type="double"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="client"                    type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="client_port"               type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="alb_fullname"              type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="elb_status_code"           type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="user_agent"                type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="ssl_cipher"                type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="ssl_protocol"              type="string"        indexed="true"  stored="true"  multiValued="false" />
+   <field name="time"                      type="tdate"         indexed="true"  stored="true"  multiValued="false" />
+   <field name="timestamp"                 type="tdate"         indexed="true"  stored="true"  multiValued="false" />
+   <uniqueKey>id</uniqueKey>
+
+</schema>
