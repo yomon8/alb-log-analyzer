@@ -4,6 +4,7 @@
 .DS_Store
 !Dockerfile
 conf/awsenv.sh
+banana/
 
 # Binaries for programs and plugins
 *.exe
