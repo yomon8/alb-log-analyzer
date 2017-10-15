@@ -1,7 +1,9 @@
-FROM golang:1.9.1
+FROM golang:1.9.1-alpine
 
 ENV ALOGETTAG=v0.4.0
-ENV ALOSOLRTAG=v0.0.3
+ENV ALOSOLRTAG=v0.1.1
+
+RUN apk add --update bash openssl-dev git
 
 RUN go get github.com/yomon8/aloget/... && \
     cd $GOPATH/src/github.com/yomon8/aloget && \
