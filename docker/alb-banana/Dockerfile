@@ -1,4 +1,4 @@
-FROM solr:7.0.1
+FROM solr:7.0.1-alpine
 
 COPY ./banana/build/banana-*.war /opt/solr/server/solr-webapp/webapp/banana.war
 COPY ./banana-context.xml /opt/solr/server/contexts/
