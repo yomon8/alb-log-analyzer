@@ -2,7 +2,7 @@ alb-log-analyzer
 ====
 AWS ALB Log Analyzer with Solr/Banana
 
-<img src="https://raw.githubusercontent.com/yomon8/alb-log-analyzer/v0.0.2/image.png" width="600">
+<img src="https://raw.githubusercontent.com/yomon8/alb-log-analyzer/v0.1.1/image.png" width="600">
 
 ## Requirement
 
