@@ -7,35 +7,65 @@
    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
    <fieldType name="tdate" class="solr.TrieDateField" />
    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true" />
+      <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
+   <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
+   <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
+   <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
+   <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
+   <fieldType name="pfloats" class="solr.FloatPointField" docValues="true" multiValued="true"/>
+   <fieldType name="pint" class="solr.IntPointField" docValues="true"/>
+   <fieldType name="pints" class="solr.IntPointField" docValues="true" multiValued="true"/>
+   <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+   <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
+   <fieldType name="point" class="solr.PointType" subFieldSuffix="_d" dimension="2"/>
+   <fieldType name="text_path" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
 
-   <field name="id"                        type="string"        indexed="true"  stored="true"  multiValued="false" required="true"/>
-   <field name="_version_"                 type="long"          indexed="true"  stored="true"  multiValued="false" />
 
-   <field name="received_bytes"            type="long"          indexed="true"  stored="true"  multiValued="false" />
-   <field name="sent_bytes"                type="long"          indexed="true"  stored="true"  multiValued="false" />
-   <field name="type"                      type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="trace_id"                  type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="target"                    type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="target_port"               type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="target_processing_time"    type="double"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="target_status_code"        type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="target_group_arn"          type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="target_group_name"         type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="request_processing_time"   type="double"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="domain"                    type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="request_uri"               type="text_general"  indexed="true"  stored="true"  multiValued="false" />
-   <field name="request_method"            type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="request_protocol"          type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="response_processing_time"  type="double"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="client"                    type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="client_port"               type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="alb_fullname"              type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="elb_status_code"           type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="user_agent"                type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="ssl_cipher"                type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="ssl_protocol"              type="string"        indexed="true"  stored="true"  multiValued="false" />
-   <field name="time"                      type="tdate"         indexed="true"  stored="true"  multiValued="false" />
-   <field name="timestamp"                 type="tdate"         indexed="true"  stored="true"  multiValued="false" />
+   <field name="id"                        type="string"          indexed="true"  stored="true"  multiValued="false" required="true"/>
+   <field name="_version_"                 type="plong"           indexed="true"  stored="true"  multiValued="false" />
+
+   <field name="received_bytes"            type="plong"           indexed="true"  stored="true"  multiValued="false" />
+   <field name="sent_bytes"                type="plong"           indexed="true"  stored="true"  multiValued="false" />
+   <field name="type"                      type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="trace_id"                  type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="target"                    type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_port"               type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_processing_time"    type="pdouble"         indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_status_code"        type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_group_arn"          type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="target_group_name"         type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_processing_time"   type="pdouble"         indexed="true"  stored="true"  multiValued="false" />
+   <field name="domain"                    type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_uri"               type="text_path"  indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_method"            type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="request_protocol"          type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="response_processing_time"  type="double"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="client"                    type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="client_port"               type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="alb_fullname"              type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="elb_status_code"           type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="user_agent"                type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="ssl_cipher"                type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="ssl_protocol"              type="string"          indexed="true"  stored="true"  multiValued="false" />
+   <field name="time"                      type="tdate"           indexed="true"  stored="true"  multiValued="false" />
+   <field name="timestamp"                 type="tdate"           indexed="true"  stored="true"  multiValued="false" />
+
    <uniqueKey>id</uniqueKey>
 
 </schema>
